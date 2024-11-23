@@ -1,0 +1,4 @@
+mongo:
+  uri: "mongodb://localhost:27017"
+  database_name: "chroma_data"
+  collection_name: "analysis_data"

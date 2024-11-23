@@ -1,0 +1,6 @@
+pika            # To communicate with RabbitMQ
+openpyxl        # To read Excel files
+pymongo         # To connect to the Mongo database
+fastapi         # To enable an endpoint to consume the JSON object
+uvicorn         # ASGI server to execute the FastAPI API
+pytest          # For unit testing
