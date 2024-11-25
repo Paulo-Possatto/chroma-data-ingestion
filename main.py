@@ -63,6 +63,7 @@ def ingest_excel(file_data: dict):
 
             del processed_data["_id"]
             sender = RabbitMQSender(RABBITMQ_HOST, QUEUE_NAME)
+            print(processed_data)
             sender.send_message(processed_data)
             document_ids.append(document_id)
         sender.close_connection

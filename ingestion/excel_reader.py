@@ -45,7 +45,7 @@ class ExcelReader:
                     "atmospheric_pressure": row[18]
                 },
                 "history_and_observations":{
-                    "last_maintence_date": str(row[19]),
+                    "last_maintenance_date": str(row[19]),
                     "maintenance_done": row[20],
                     "observations": row[21]
                 }

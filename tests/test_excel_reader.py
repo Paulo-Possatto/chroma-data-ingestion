@@ -9,7 +9,7 @@ def test_read_excel():
     assert params_data["transformer_identification"]["transformer_id"] == "T01467"
     assert params_data["transformer_identification"]["transformer_name"] == "UHV transformer 3"
     assert params_data["transformer_identification"]["location"] == "Substation 351"
-    assert str(params_data["transformer_identification"]["installation_date"]) == "2019-06-24"
+    assert str(params_data["transformer_identification"]["installation_date"]) == "2019-06-24 00:00:00"
     assert str(params_data["chromatography_data"]["analysis_timestamp"]) == "2024-11-19T13:35:00"
     assert params_data["chromatography_data"]["H2"] == 2
     assert params_data["chromatography_data"]["CO"] == 120
@@ -24,7 +24,7 @@ def test_read_excel():
     assert params_data["environment_parameters"]["environment_temperature"] == 30
     assert params_data["environment_parameters"]["environment_humidity"] == 60
     assert params_data["environment_parameters"]["atmospheric_pressure"] == 1.01
-    assert str(params_data["history_and_observations"]["last_maintence_date"]) == "2023-12-12"
+    assert str(params_data["history_and_observations"]["last_maintenance_date"]) == "2023-12-12 00:00:00"
     assert params_data["history_and_observations"]["maintenance_done"] == "Oil Change"
     assert params_data["history_and_observations"]["observations"] == "No faults detected"
 

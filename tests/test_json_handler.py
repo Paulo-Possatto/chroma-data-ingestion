@@ -7,10 +7,10 @@ INPUT_DATA = {
             "transformer_id": "T1234",
             "transformer_name": "LV Transformer 12",
             "location": "Substation 31",
-            "installation_date": datetime.date('2021', '12', '25')
+            "installation_date": datetime.date(2021, 12, 25)
         }, 
         "chromatography_data":{
-            "analysis_timestamp": datetime.datetime('2024', '11', '25', '14', '46', '00'),
+            "analysis_timestamp": datetime.datetime(2024, 11, 25, 14, 46, 00),
             "H2": 10,
             "CO": 25,
             "CO2": 335,
@@ -28,7 +28,7 @@ INPUT_DATA = {
             "atmospheric_pressure": 1.06
         },
         "history_and_observations":{
-            "last_maintence_date": datetime.date('2023', '08', '12'),
+            "last_maintence_date": datetime.date(2023, 8, 12),
             "maintenance_done": "Oil change",
             "observations": "No faults detected"
         }
@@ -51,11 +51,11 @@ def test_process_required_json():
 def test_process_missing_required_json_key():
     mod_data = INPUT_DATA
     del mod_data['transformer_identification']['transformer_id']
-    with pytest.raises(ValueError, match="The transformer ID and it's location must be defined!"):
+    with pytest.raises(ValueError, match="The transformer ID and its location must be defined!"):
         JSONHandler.process_json(mod_data)
 
 def test_process_missing_json_value():
     mod_data = INPUT_DATA
     mod_data['transformer_identification']['transformer_id'] = ""
-    with pytest.raises(ValueError, match="The transformer ID and it's location must be defined!"):
+    with pytest.raises(ValueError, match="The transformer ID and its location must be defined!"):
         JSONHandler.process_json(mod_data)
