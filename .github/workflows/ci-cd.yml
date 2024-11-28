@@ -51,10 +51,10 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Build Docker Image
-        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/chroma-data-ingestion:latest .
+        run: docker build -t ${{ secrets.DOCKER_USERNAME }}/chromamon-data-ingestion:latest .
 
       - name: Push Docker Image
-        run: docker push ${{ secrets.DOCKER_USERNAME }}/chroma-data-ingestion:latest
+        run: docker push ${{ secrets.DOCKER_USERNAME }}/chromamon-data-ingestion:latest
 
   deploy:
     name: Deploy to Server
@@ -63,9 +63,10 @@ jobs:
     steps:
       - name: Deploy to Server
         run: |
-          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
-          docker pull ${{ secrets.DOCKER_USERNAME }}/chroma-data-ingestion:latest
-          docker stop chroma-data-ingestion || true
-          docker rm chroma-data-ingestion || true
-          docker run -d -p 8000:8000 --name chroma-data-ingestion ${{ secrets.DOCKER_USERNAME }}/chroma-data-ingestion:latest
-          EOF
+          echo "Server not yet defined" 
+#          ssh -o StrictHostKeyChecking=no ${{ secrets.SERVER_USER }}@${{ secrets.SERVER_HOST }} << 'EOF'
+#          docker pull ${{ secrets.DOCKER_USERNAME }}/chromamon-data-ingestion:latest
+#          docker stop chromamon-data-ingestion || true
+#          docker rm chromamon-data-ingestion || true
+#          docker run -d -p 8000:8000 --name chromamon-data-ingestion ${{ secrets.DOCKER_USERNAME }}/chromamon-data-ingestion:latest
+#          EOF
