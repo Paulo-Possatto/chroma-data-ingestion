@@ -3,6 +3,7 @@ from ingestion.json_handler import JSONHandler
 from ingestion.excel_reader import ExcelReader
 from ingestion.message_sender import RabbitMQSender
 from ingestion.mongodb_client import MongoDBClient
+from ingestion.test_data import TestData
 import yaml
 import os
 
@@ -73,5 +74,27 @@ def ingest_excel(file_data: dict):
                 "document_ids": document_ids}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
+    except Exception as e:
+        raise HTTPException(status_code=500, detail="Internal Error: " + str(e))
+    
+@app.post("/ingest-dummy/")
+def ingest_dummy_data():
+    try:
+        processed_data = JSONHandler.process_json(TestData.get_test_data())
+        print(processed_data)
+
+        document_id = mongo_client.save_data(processed_data)
+
+        processed_data["document_id"] = document_id
+
+        del processed_data["_id"]
+
+        sender = RabbitMQSender(RABBITMQ_HOST, QUEUE_NAME)
+        sender.send_message(processed_data)
+        sender.close_connection
+
+        return {"status": "success",
+                "message": "Data successfully sent!",
+                "document_id": document_id}
     except Exception as e:
         raise HTTPException(status_code=500, detail="Internal Error: " + str(e))
