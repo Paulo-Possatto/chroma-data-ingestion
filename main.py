@@ -9,7 +9,7 @@ import os
 
 app = FastAPI()
 
-RABBITMQ_HOST = "rabbitmq.chroma.svc.cluster.local"
+RABBITMQ_HOST = "localhost"
 QUEUE_NAME = "data-ingestion"
 
 with open("config/config.yaml", "r") as config_file:
