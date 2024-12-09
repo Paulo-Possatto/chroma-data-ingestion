@@ -9,7 +9,7 @@ import os
 
 app = FastAPI()
 
-RABBITMQ_HOST = "localhost"
+RABBITMQ_HOST = "rabbitmq.chroma.svc.cluster.local"
 QUEUE_NAME = "data-ingestion"
 
 with open("config/config.yaml", "r") as config_file:
@@ -86,7 +86,6 @@ def ingest_dummy_data():
         document_id = mongo_client.save_data(processed_data)
 
         processed_data["document_id"] = document_id
-
         del processed_data["_id"]
 
         sender = RabbitMQSender(RABBITMQ_HOST, QUEUE_NAME)
