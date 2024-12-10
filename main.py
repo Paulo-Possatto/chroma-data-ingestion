@@ -9,7 +9,7 @@ import os
 
 app = FastAPI()
 
-RABBITMQ_HOST = os.getenv("RABBITMQ_HOST", "localhost")
+RABBITMQ_HOST = os.getenv("RABBITMQ_HOST")
 QUEUE_NAME = "data-ingestion"
 
 with open("config/config.yaml", "r") as config_file:
