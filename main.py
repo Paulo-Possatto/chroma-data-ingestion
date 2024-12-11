@@ -35,7 +35,7 @@ def ingest_json(data: dict):
 
         sender = RabbitMQSender(RABBITMQ_HOST, QUEUE_NAME)
         sender.send_message(processed_data)
-        sender.close_connection
+        sender.close_connection()
 
         return {"status": "success",
                 "message": "Data successfully sent!",
@@ -67,7 +67,7 @@ def ingest_excel(file_data: dict):
             print(processed_data)
             sender.send_message(processed_data)
             document_ids.append(document_id)
-        sender.close_connection
+            sender.close_connection()
 
         return {"status": "success",
                 "message": "Data successfully sent!",
@@ -88,9 +88,11 @@ def ingest_dummy_data():
         processed_data["document_id"] = document_id
         del processed_data["_id"]
 
+        print("RabbitMQ Host: {}".format(RABBITMQ_HOST))
+
         sender = RabbitMQSender(RABBITMQ_HOST, QUEUE_NAME)
         sender.send_message(processed_data)
-        sender.close_connection
+        sender.close_connection()
 
         return {"status": "success",
                 "message": "Data successfully sent!",
