@@ -16,8 +16,9 @@ with open("config/config.yaml", "r") as config_file:
     config = yaml.safe_load(config_file)
 
 mongo_config = config["mongo"]
+MONGO_URI = os.getenv("MONGO_URI", mongo_config["uri"])
 mongo_client = MongoDBClient(
-    uri=mongo_config["uri"],
+    uri=MONGO_URI,
     database_name=mongo_config["database_name"],
     collection_name=mongo_config["collection_name"]
 )
